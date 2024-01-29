@@ -48,6 +48,10 @@ https://cdn.jsdelivr.net/gh/four4to6/leaflet_opacity@latest/data/leaflet_opacity
 https://cdn.jsdelivr.net/gh/four4to6/leaflet_opacity@latest/data/leaflet_opacity.css
 ```
 
+### JSFiddle
+https://jsfiddle.net/sfk7p4jw/
+
+
 ## 著作・出典 等
 
 ### 複数の地図の切替と透過表示 (Leaflet)
