@@ -39,6 +39,15 @@ L.control.opacityLayers(baseCtl, overCtl, {collapsed:true}).addTo(map); // 透�
 
 ## Example
 
+### CDN
+```html:JavaScript
+https://cdn.jsdelivr.net/gh/four4to6/leaflet_opacity@latest/data/leaflet_opacity.js
+```
+
+```html:CSS
+https://cdn.jsdelivr.net/gh/four4to6/leaflet_opacity@latest/data/leaflet_opacity.css
+```
+
 ## 著作・出典 等
 
 ### 複数の地図の切替と透過表示 (Leaflet)
