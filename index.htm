@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
+  <title>Leaflet 地図の透過度変更</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <link rel="stylesheet" href="js/leaflet_opacity.css" />
+  <script src="js/leaflet_opacity.js"></script>
+  <style type="text/css">
+    #map_container {
+        position:absolute;
+        top:0; left:0; right:0; bottom:0;
+    }
+  </style>
+  <script type="text/javascript" charset="UTF-8">
+    const baseMap = [ // ベースマップの定義
+        L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png",{
+            attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html'"
+            + " target='_blank'>地理院標準地図</a>", minZoom: 2, maxZoom: 18}),
+        L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png",{
+            attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html'"
+            + " target='_blank'>地理院淡色地図</a>", minZoom: 2, maxZoom: 18}),
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+            attribution: "<a href='https://www.openstreetmap.org/copyright'"
+            + " target='_blank'>OpenStreetMap</a>", minZoom: 2, maxZoom: 18})
+    ];
+    
+    const overMap = [ // オーバーレイマップの定義
+        L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg",{
+            attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html'"
+            + " target='_blank'>地理院最新写真</a>", minZoom: 2, maxZoom: 18}),
+        L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/gazo1/{z}/{x}/{y}.jpg",{
+            attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html'"
+            + " target='_blank'>1970年代写真</a>", minZoom: 10, maxZoom: 17}),
+        L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/ort_old10/{z}/{x}/{y}.png",{
+            attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html'"
+            + " target='_blank'>1960年代写真</a>", minZoom: 2, maxZoom: 17}),
+        L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/relief/{z}/{x}/{y}.png",{
+            attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html'"
+            + " target='_blank'>色別標高図</a>", minZoom: 5, maxZoom: 16, opacity: 0.2}),
+        L.tileLayer("https://cyberjapandata.gsi.go.jp/xyz/hillshademap/{z}/{x}/{y}.png",{
+            attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html'"
+            + " target='_blank'>陰影起伏図</a>", minZoom: 5, maxZoom: 16, opacity: 0.2})
+    ];
+    
+    const baseCtl = { // ベースマップ切替ボタンの定義
+        "地理院標準地図":    baseMap[0],
+        "地理院淡色地図":    baseMap[1],
+        "OpenStreetMap":    baseMap[2]
+    };
+    
+    const overCtl = { // オーバーレイマップ切替ボタンの定義
+        "地理院最新写真":    overMap[0],
+        "1970年頃写真":        overMap[1],
+        "1960年頃写真":        overMap[2],
+        "色別標高図":        overMap[3],
+        "陰影起伏図":        overMap[4]
+    };
+    
+    function init() {
+        let map = L.map('map_container', { zoomControl: false });
+        map.setView([37,136.5], 6); // 日本を表示
+        baseMap[0].addTo(map);
+    
+        L.control.scale({imperial:false, position:'bottomleft'}).addTo(map); // 目盛表示
+        L.control.zoom({position:'bottomleft'}).addTo(map); // ズーム制御
+        L.control.opacityLayers(baseCtl, overCtl, {collapsed:true}).addTo(map); // 透過付マップ切替
+    }
+  </script>
+</head>
+<body onload="init()">
+  <div id="map_container"></div>
+</body>
+</html>
