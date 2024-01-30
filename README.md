@@ -7,7 +7,9 @@
 使用についての詳細は以下のURL(記事)を**必ずお読みください**。
 
 「複数の地図の切替と透過表示 (Leaflet)」
-http://loca.ash.jp/leaflet/leaflet_maps_opacity.htm
+
+https://loca.ash.jp/leaflet/leaflet_maps_opacity.htm
+
 
 ## 注意事項
 
@@ -55,7 +57,7 @@ https://jsfiddle.net/sfk7p4jw/
 ## 著作・出典 等
 
 ### 複数の地図の切替と透過表示 (Leaflet)
-http://loca.ash.jp/leaflet/leaflet_maps_opacity.htm
+https://loca.ash.jp/leaflet/leaflet_maps_opacity.htm
 
 ### Leaflet - a JavaScript library for interactive maps:
 https://leafletjs.com/
